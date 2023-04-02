@@ -25,8 +25,8 @@ def calculate_freight(order: Order):
         },
         "options": {
             "insurance_value": 100.00,
-            "receipt": False,
-            "own_hand": True,
+            "receipt": True,
+            "own_hand": False,
         },
         "services": str(order.courier_choice),
     }

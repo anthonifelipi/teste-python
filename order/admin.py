@@ -8,17 +8,48 @@ from .utils import calculate_freight
 
 class FreightInline(admin.StackedInline):
     model = Freight
-    extra = 1
+    extra = 0
     readonly_fields = [
         "delivery_cost",
         "delivery_time",
         "external_freight_id",
         "carrier",
+        "ensurance_price",
     ]
 
 
 class Order_Admin(admin.ModelAdmin):
     inlines = [FreightInline]
+    fieldsets = (
+        (
+            "Order Number",
+            {
+                "fields": ("number_order",),
+            },
+        ),
+        (
+            "Package",
+            {
+                "fields": (
+                    "width",
+                    "height",
+                    "length",
+                    "weight",
+                    "amount",
+                )
+            },
+        ),
+        (
+            "Delivery infos",
+            {
+                "fields": (
+                    "zip_from",
+                    "zip_to",
+                    "courier_choice",
+                )
+            },
+        ),
+    )
     search_fields = ["number_order"]
     list_display = (
         "number_order",
@@ -45,7 +76,6 @@ class Order_Admin(admin.ModelAdmin):
     def calculate_freight_action(self, request, queryset):
         for item in queryset:
             freight_data = calculate_freight(item)
-            print(freight_data)
             if freight_data:
                 freight = Freight.objects.create(**freight_data)
                 self.message_user(
@@ -62,4 +92,7 @@ class Order_Admin(admin.ModelAdmin):
     actions = [calculate_freight_action]
 
 
-admin.site.register(Order, Order_Admin)
+admin.site.register(
+    Order,
+    Order_Admin,
+)
