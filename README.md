@@ -1,6 +1,6 @@
 # teste-python
 
-### Kollection API
+### Delivery API
 
 API para gerar fretes a partir de uma determinada Order.
 
