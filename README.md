@@ -56,3 +56,16 @@ $ pip install -r requirements.txt
 # rodas as migrations
 $ python manage.py migrate
 ```
+
+```bash
+# criar um usuario admin para conseguir logar na pagina admin do django
+$ python manage.py createsuperuser
+```
+```bash
+# rodar o servidor localmente
+$ python manage.py runserver
+```
+
+### Pagina de administrador
+
+- Após todos os passos acima, entrar na url "http://127.0.0.1:8000/admin" que é a url padrao do django e acessar com seu login e senha criado a alguns passos acima.
