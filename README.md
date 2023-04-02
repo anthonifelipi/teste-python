@@ -38,7 +38,7 @@ $ cd teste-python.git
 **Siga esses passos no terminal**
 
 ```bash
-# Instale as dependencias
+# Instale o ambiente virtual
 $ python -m venv venv
 ```
 
